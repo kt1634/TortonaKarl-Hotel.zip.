@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vine Visita</title>
+<link rel="stylesheet" href="hotel.css">
+</head>
+
+<body>
+<header class="site-header">
+
+<div class="logo-area">
+
+<img src="https://images.scalebranding.com/palm-tree-logo-24fb5e34-95a4-4fd2-baa7-05e9634d6b03.jpg" alt="Hotel Logo">
+
+<div class="hotel-name">Vine Visita</div>
+
+</div>
+
+</header>
+<div class="hotel-grid">
+
+
+<div class="hotel-container">
+<h1>Suite</h1>
+<h3>Vine Visita</h3>
+<h3 id="placeholder5"></h3>
+
+<button onclick="add1()">Click to add guest</button>
+<input id="list" type="text" placeholder="Enter a guest name.">
+
+<h3>Guest Check-Out</h3>
+<input id="rem" type="text">
+<button onclick="remove1()">Remove guest</button>
+
+<h2 id="placeholder"></h2>
+<h3 id="placeholder3"></h3>
+<h3 id="placeholder4"></h3>
+
+<button onclick="lock1()">Lock room</button>
+<button onclick="unlock1()">Unlock room</button>
+<button onclick="clearall1()">Clear all guests</button>
+
+</div>
+
+<div class="hotel-container-2">
+<h1>Suite</h1>
+<h3>Vine Visita</h3>
+
+<button onclick="add2()">Click to add guest</button>
+<input id="list2" type="text" placeholder ="Enter a guest name.">
+
+<h3>Guest Check-Out</h3>
+<input id="rem2" type="text">
+<button onclick="remove2()">Remove guest</button>
+
+<h2 id="placeholder2_2"></h2>
+<h3 id="placeholder3_2"></h3>
+<h3 id="placeholder4_2"></h3>
+
+<button onclick="lock2()">Lock room</button>
+<button onclick="unlock2()">Unlock room</button>
+<button onclick="clearall2()">Clear all guests</button>
+</div>
+
+
+<div class="hotel-container-3">
+<h1>Suite</h1>
+
+<button onclick="add3()">Click to add guest</button>
+<input id="list3" type="text"placeholder ="Enter a guest name.">
+
+<h3>Guest Check-Out</h3>
+<input id="rem3">
+<button onclick="remove3()">Remove guest</button>
+
+<h2 id="placeholder2_3"></h2>
+<h3 id="placeholder3_3"></h3>
+<h3 id="placeholder4_3"></h3>
+
+<button onclick="lock3()">Lock room</button>
+<button onclick="unlock3()">Unlock room</button>
+<button onclick="clearall3()">Clear all guests</button>
+</div>
+
+<div class="hotel-container-4">
+<h1>Room</h1>
+
+<button onclick="add4()">Click to add guest</button>
+<input id="list4"type="text"placeholder ="Enter a guest name.">
+
+
+<h3>Guest Check-Out</h3>
+<input id="rem4">
+<button onclick="remove4()">Remove guest</button>
+
+<h2 id="placeholder2_4"></h2>
+<h3 id="placeholder3_4"></h3>
+<h3 id="placeholder4_4"></h3>
+
+<button onclick="lock4()">Lock room</button>
+<button onclick="unlock4()">Unlock room</button>
+<button onclick="clearall4()">Clear all guests</button>
+</div>
+
+<div class="hotel-container-5">
+<h1>Room</h1>
+
+<button onclick="add5()">Click to add guest</button>
+<input id="list5"type="text"placeholder ="Enter a guest name.">
+
+
+<h3>Guest Check-Out</h3>
+<input id="rem5">
+<button onclick="remove5()">Remove guest</button>
+
+<h2 id="placeholder2_5"></h2>
+<h3 id="placeholder3_5"></h3>
+<h3 id="placeholder4_5"></h3>
+
+<button onclick="lock5()">Lock room</button>
+<button onclick="unlock5()">Unlock room</button>
+<button onclick="clearall5()">Clear all guests</button>
+</div>
+
+<div class="hotel-container-6">
+<h1>Room</h1>
+
+<button onclick="add6()">Click to add guest</button>
+<input id="list6"type="text"placeholder ="Enter a guest name.">
+
+
+<h3>Guest Check-Out</h3>
+<input id="rem6">
+<button onclick="remove6()">Remove guest</button>
+
+<h2 id="placeholder2_6"></h2>
+<h3 id="placeholder3_6"></h3>
+<h3 id="placeholder4_6"></h3>
+
+<button onclick="lock6()">Lock room</button>
+<button onclick="unlock6()">Unlock room</button>
+<button onclick="clearall6()">Clear all guests</button>
+</div>
+
+</div>
+
+
+
+<div class="log">
+<h1>Hotel Guest Check-In Log</h1>
+<h3>All guests currently checked in</h3>
+
+<div id="log"></div>
+</div>
+
+
+<script>
+
+/* GLOBAL HOTEL LOG */
+let hotelLog = []
+
+function updateHotelLog(){
+
+let display = ""
+
+for(let i=0;i<hotelLog.length;i++){
+display += (i+1) + ". " + hotelLog[i]+"<br>"
+}
+
+document.getElementById("log").innerHTML = display
+
+}
+
+
+//first
+let items1=[]
+
+function add1(){
+if(items1.length >= 4) {
+        button.disabled = true
+        document.getElementById('placeholder').innerHTML = "Room cannot be unlocked."
+        document.getElementById('placeholder3').innerHTML = "Room cannot be unlocked due to being full."
+}
+let name = document.getElementById("list").value
+
+if(!name)return
+
+let time = new Date().toLocaleTimeString()
+
+items1.push(name +" ("+time+")")
+
+hotelLog.push(name +" checked into Suite 1 at "+time)
+
+updateDisplay("placeholder", items1)
+
+updateHotelLog()
+
+document.getElementById("list").value = ""
+
+}
+
+function remove1(){
+
+let name = document.getElementById("rem").value
+if(!name) return
+
+for(let i=0;i<items1.length;i++){
+if(items1[i].startsWith(name)){
+items1.splice(i,1)
+break
+}
+}
+
+updateDisplay("placeholder", items1)
+
+document.getElementById("rem").value = ""
+
+
+}
+
+function lock1(){
+document.getElementById("list").disabled = true
+}
+
+function unlock1(){
+    if(items1.length >= 5) {
+        button.disabled = true
+        document.getElementById('placeholder3').innerHTML = "Room is unlocked."
+        document.getElementById('placeholder3').innerHTML = "Room cannot be unlocked due to being full."
+    }
+document.getElementById("list").disabled = false
+}
+
+function clearall1(){
+items1=[]
+updateDisplay("placeholder", items1)
+}
+
+
+//second
+let items2 = []
+
+function add2(){
+if(items2.length >= 4) {
+        button.disabled = true
+        document.getElementById('placeholder2_2').innerHTML = ""
+        document.getElementById('placeholder5') = "Room cannot be unlocked due to being full."
+}
+let name = document.getElementById("list2").value
+if(!name)return
+
+let time = new Date().toLocaleTimeString()
+
+items2.push(name +" ("+time+")")
+
+hotelLog.push(name +" checked into Suite 2 at "+time)
+
+updateDisplay("placeholder2_2", items2)
+
+updateHotelLog()
+
+document.getElementById("list2").value = ""
+}
+
+function remove2(){
+
+let name = document.getElementById("rem2").value
+if(!name) return
+
+for(let i=0;i<items2.length;i++){
+if(items2[i].startsWith(name)){
+items2.splice(i,1)
+break
+}
+}
+
+updateDisplay("placeholder2_2", items2)
+
+document.getElementById("rem2").value = ""
+
+}
+
+function lock2(){   
+    document.getElementById("list2").disabled = true
+}
+function unlock2(){ 
+    document.getElementById("list2").disabled = false
+}
+function clearall2(){   
+    items2 = [];updateDisplay("placeholder2_2", items2)
+
+}
+
+
+//third
+let items3 = []
+
+function add3(){
+if(items3.length >= 4) {
+        button.disabled = true
+        document.getElementById('placeholder2_3').innerHTML = ""
+        document.getElementById('placeholder5') = "Room cannot be unlocked due to being full."
+}
+let name = document.getElementById("list3").value
+if(!name)return
+
+let time = new Date().toLocaleTimeString()
+
+items3.push(name+" ("+time+")")
+
+hotelLog.push(name+" checked into Suite 3 at "+time)
+
+updateDisplay("placeholder2_3", items3)
+updateHotelLog()
+
+document.getElementById("list3").value = ""
+}
+
+function remove3(){
+    items3.pop();updateDisplay("placeholder2_3",items3)
+    function remove3(){
+
+let name = document.getElementById("rem3").value
+if(!name) return
+
+for(let i=0;i<items3.length;i++){
+if(items3[i].startsWith(name)){
+items3.splice(i,1)
+break
+}
+}
+
+updateDisplay("placeholder2_3", items3)
+
+document.getElementById("rem3").value = ""
+
+}
+}
+function lock3(){
+    document.getElementById("list3").disabled = true
+}
+function unlock3(){
+    document.getElementById("list3").disabled = false
+}
+function clearall3(){
+    items3 = []
+    updateDisplay("placeholder2_3",items3)
+}
+
+
+//fourth
+
+let items4=[]
+
+function add4(){
+if(items4.length >= 4) {
+        button.disabled = true
+        document.getElementById('placeholder2_4').innerHTML = ""
+        document.getElementById('placeholder5') = "Room cannot be unlocked due to being full."
+}
+let name=document.getElementById("list4").value
+if(!name)return
+
+let time = new Date().toLocaleTimeString()
+
+items4.push(name+" ("+time+")")
+
+hotelLog.push(name+" checked into Room 4 at "+time)
+
+updateDisplay("placeholder2_4",items4)
+
+updateHotelLog()
+
+document.getElementById("list4").value = ""
+}
+
+function remove4(){
+
+let name = document.getElementById("rem4").value
+if(!name) return
+
+for(let i=0;i<items4.length;i++){
+if(items4[i].startsWith(name)){
+items4.splice(i,1)
+break
+}
+}
+
+updateDisplay("placeholder2_4", items4)
+
+document.getElementById("rem4").value = ""
+
+}
+function lock4(){
+    document.getElementById("list4").disabled = true
+}
+function unlock4(){
+    document.getElementById("list4").disabled = false
+}
+function clearall4(){
+    items4 = [];updateDisplay("placeholder2_4", items4)
+}
+
+
+//fifth
+
+let items5 = []
+
+function add5(){
+if(items5.length >= 4) {
+        button.disabled = true
+        document.getElementById('placeholder2_5').innerHTML = ""
+        document.getElementById('placeholder5') = "Room cannot be unlocked due to being full."
+}
+let name = document.getElementById("list5").value
+if(!name)return
+
+let time=new Date().toLocaleTimeString()
+
+items5.push(name+" ("+time+")")
+
+hotelLog.push(name+" checked into Room 5 at "+time)
+
+updateDisplay("placeholder2_5",items5)
+
+updateHotelLog()
+
+document.getElementById("list5").value = ""
+}
+
+function remove5(){
+
+let name = document.getElementById("rem5").value
+if(!name) return
+
+for(let i=0;i<items5.length;i++){
+if(items5[i].startsWith(name)){
+items5.splice(i,1)
+break
+}
+}
+
+updateDisplay("placeholder2_5", items5)
+
+document.getElementById("rem5").value = ""
+
+}
+function lock5(){
+    document.getElementById("list5").disabled = true
+}
+function unlock5(){
+    document.getElementById("list5").disabled = false
+}
+function clearall5(){
+    items5=[];updateDisplay("placeholder2_5", items5)
+}
+
+
+///sixth
+
+let items6 = []
+
+function add6(){
+if(items6.length >= 4) {
+        button.disabled = true
+        document.getElementById('placeholder2_6').innerHTML = ""
+        document.getElementById('placeholder5') = "Room cannot be unlocked due to being full."
+}
+let name=document.getElementById("list6").value
+if(!name)return
+
+let time=new Date().toLocaleTimeString()
+
+items6.push(name+" ("+time+")")
+
+hotelLog.push(name+" checked into Room 6 at "+time)
+
+updateDisplay("placeholder2_6",items6)
+
+updateHotelLog()
+
+document.getElementById("list6").value=""
+}
+
+function remove6(){
+let name = document.getElementById("rem6").value
+if(!name) return
+for(let i=0;i<items6.length;i++){
+if(items6[i].startsWith(name)){
+items6.splice(i,1)
+break
+}
+}
+
+updateDisplay("placeholder2_6", items6)
+
+document.getElementById("rem6").value = ""
+
+}
+function lock6(){
+    document.getElementById("list6").disabled=true
+
+}
+function unlock6(){
+    document.getElementById("list6").disabled=false
+}
+function clearall6(){
+    items6=[];updateDisplay("placeholder2_6",items6)
+}
+
+
+//display
+
+function updateDisplay(id,array){
+
+let display = ""
+
+for(let i=0;i<array.length;i++){
+display+=(i+1)+". "+array[i]+"<br>"
+}
+
+document.getElementById(id).innerHTML=display
+
+}
+
+</script>
+
+</body>
+</html>
